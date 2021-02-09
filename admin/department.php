@@ -55,7 +55,11 @@ include "includes/sidebar.php";
                                                     $num_rows++;
                                                     echo "<input type=\"number\" class=\"form-control\" name=\"DNO\" placeholder=\"\" value=\"$num_rows\" required>"
                                                     ?>
+                                            </div>
+                                        </div>
                                                 <!--<input type="number" class="form-control" name="DNO" placeholder="" required>-->
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Stream</label>
                                                 <select class="form-control" name="STREAM" required>
                                                     <option selected="" disabled="">Select Stream</option>
@@ -66,6 +70,10 @@ include "includes/sidebar.php";
                                                     <option value="VOCATIONAL">VOCATIONAL</option>
 
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Department Name</label>
                                                 <input type="text" class="form-control" name="DN" placeholder="" required>
 
@@ -75,6 +83,10 @@ include "includes/sidebar.php";
                                                     <option value="UG">UG</option>
                                                     <option value="PG">PG</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
 
                                                 <label>Classroom Number</label>
                                                 <select class="form-control" id="cno" name="CNO" required >
@@ -99,10 +111,11 @@ include "includes/sidebar.php";
                                                     ?>
 
                                                 </select>
-
-
                                             </div>
                                         </div>
+
+
+
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                                <button class="btn btn-block btn-info rounded-0" name="add_dept">Add Department</button> 
