@@ -50,12 +50,26 @@ include "includes/sidebar.php";
                                             </div>
                                         </div>
                                         <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Stream</label>
+                                                <select class="form-control" name="STREAM" required>
+                                                    <option selected="" disabled="">Select Stream</option>
+                                                    <option value="ARTS">ARTS</option>
+                                                    <option value="COMMERCE">COMMERCE</option>
+                                                    <option value="SCIENCE">SCIENCE</option>
+
+                                                    <option value="VOCATIONAL">VOCATIONAL</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-md-12">
                                        
                                             <div class="form-group">
                                                 <label>Select Department</label>
                                                 <select class="form-control" id="tdepartment" name="TDP" required>
                                                     <?php
-
+/*
 
                                                 include 'connection.php';
                                                 $sql="select name from department";
@@ -71,11 +85,11 @@ include "includes/sidebar.php";
                                                 }
                                                     echo $string;
                                                     pg_close($db);
-                                                    ?>
+                                                    */?>
                                                         
                                                     </select>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Course Type</label>

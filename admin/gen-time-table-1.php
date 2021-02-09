@@ -5,13 +5,16 @@ include "includes/sidebar.php";
 <?php
 if(session_status() == PHP_SESSION_NONE)
     session_start();
-if(isset($_POST['COURSENAME']) && isset($_POST['SEM'])) {
-    $_SESSION['cname']=$_POST['COURSENAME'];
+if(isset($_POST['TDP']) && isset($_POST['YEAR']) && isset($_POST['SEM'])) {
+    $_SESSION['dept']=$_POST['TDP'];
+    $_SESSION['year']=$_POST['YEAR'];
     $_SESSION['sem']=$_POST['SEM'];
 }
 else{
-    $_POST['COURSENAME']=$_SESSION['cname'];
+    $_POST['TDP']=$_SESSION['dept'];
+    $_POST['YEAR']=$_SESSION['year'];
     $_POST['SEM']=$_SESSION['sem'];
+
 
 }
 ?>
@@ -93,8 +96,7 @@ else{
                                                         // $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
                                                        // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
                                                        // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
-                                                        $cn=$_POST['COURSENAME'];
-                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where  ctype='$_SESSION[ctype]' and cname='$cn')";
+                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=(select did from department where name='$_SESSION[dept]')";
                                                         $ret=pg_query($db,$sql);
                                                         pg_last_error($db);
                                                         if(!$ret) {
@@ -183,8 +185,9 @@ else{
                                                             $dp = "'$_SESSION[dept]'";
                                                             $se = "'$_SESSION[sem]'";
                                                             $da = "'$_SESSION[day]'";
-                                                            $cn = $_POST['COURSENAME'];
-                                                            $sql = "select * from timeslot where time not in (select timeslot from allot where allot.day =$da and semester=$se and did=(select did from department where name=$dp) and allot.cno=(select cno from course where cname='$cn'))";
+                                                            $ye = "'$_SESSION[year]'";
+                                                            //$cn = $_POST['COURSENAME'];
+                                                            $sql = "select * from timeslot where time not in (select timeslot from allot where allot.day =$da and semester=$se and did=(select did from department where name=$dp))";
                                                             //$sql = "select * from timeslot where time not in (select timeslot from allot where did =$dp and semester='$se' and allot.day = $da);";
                                                             //$sql="select * from timeslot where time not in(select timeslot from allot where )"
 
@@ -274,11 +277,11 @@ else{
 
                                     $sid = pg_fetch_row($sr);
                                     $tid = pg_fetch_row($tr);
-                                    echo "<tr><th scope=\"row\">{$row[6]}</th>
-                        <td>{$row[5]}</td>
+                                    echo "<tr><th scope=\"row\">{$row[5]}</th>
+                        <td>{$row[4]}</td>
                         <td>{$sid[0]}</td>
                         <td>{$tid[0]}</td>
-                        <td>{$row[4]}</td><td>{$row[7]}</td>" ?>
+                        <td>{$row[3]}</td><td>{$row[6]}</td>" ?>
                                     <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[6]?>&tslot=<?php echo $row[5]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td
                                     </tr>
                                     <?php

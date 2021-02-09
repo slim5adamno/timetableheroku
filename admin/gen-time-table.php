@@ -5,15 +5,15 @@ include "includes/sidebar.php";
 <?php
     if(session_status() == PHP_SESSION_NONE)
         session_start();
-    if(isset($_POST['TDP']) && isset($_POST['CTYPE']) && isset($_POST['STYPE']) && isset($_POST['DAY'])) {
-        $_SESSION['dept']=$_POST['TDP'];
+    if(isset($_POST['STREAM']) && isset($_POST['CTYPE']) && isset($_POST['STYPE']) && isset($_POST['DAY'])) {
+        $_SESSION['stream']=$_POST['STREAM'];
         $_SESSION['ctype']=$_POST['CTYPE'];
         $_SESSION['stype']=$_POST['STYPE'];
         $_SESSION['day']=$_POST['DAY'];
     }
     else{
     
-    $_POST['TDP']=$_SESSION['dept'];
+    $_POST['STREAM']=$_SESSION['stream'];
         $_POST['CTYPE']=$_SESSION['ctype'];
         $_POST['STYPE']=$_SESSION['stype'];
         $_POST['DAY'] = $_SESSION['day'];
@@ -54,14 +54,14 @@ include "includes/sidebar.php";
                                 <div class="col-lg-12">
                                     <form method="post" action="gen-time-table-1.php">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <!--<div class="col-md-12">
 
                                             <div class="form-group">
                                                 <label for="coursename">Course Name</label>
 
                                                 <select class="form-control" id="coursename" name="COURSENAME" required >
                                                     <?php
-
+/*
 
                                                     include 'connection.php';
                                                     // $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
@@ -78,19 +78,56 @@ include "includes/sidebar.php";
                                                     }
                                                     echo $string;
                                                     pg_close($db);
-                                                    ?>
+                                                    */?>
 
+                                                </select>
+                                            </div>
+                                        </div>-->
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <label>Select Department</label>
+                                                <select class="form-control" id="tdepartment" name="TDP" required>
+                                                    <?php
+
+
+                                                                                        include 'connection.php';
+                                                                                        $sql="select name from department where stream='$_SESSION[stream]' and ctype='$_SESSION[ctype]'";
+
+                                                                                            $ret=pg_query($db,$sql);
+                                                                                            if(!$ret) {
+                                                                                        echo pg_last_error($db);
+                                                                                            exit;
+                                                                                                }
+                                                                                            $string = '<option selected disabled>Select</option>';
+                                                                                        while($row = pg_fetch_row($ret)) {
+                                                                                        $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                                                        }
+                                                                                            echo $string;
+                                                                                            pg_close($db);
+                                                                                            ?>
+
+                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Year</label>
+                                                <select class="form-control" id="year" name="YEAR" required>
+                                                    <option selected disabled>Select</option>
+                                                    <option value="FY">FY</option>
+                                                    <option value="SY">SY</option>
+                                                    <option value="TY">TY</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Select Semester</label>
+                                                <label>Semester</label>
                                                 <select class="form-control" id="semester" name="SEM" required>
                                                     <option selected disabled>Select</option>
-                                                    <option value="FY">FY</option>
-                                                    <option value="SY">SY</option>
-                                                    <option value="TY">TY</option>
+                                                    <option value="SEM I">SEM I</option>
+                                                    <option value="SEM II">SEM II</option>
                                                 </select>
                                             </div>
                                         </div>
