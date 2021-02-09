@@ -59,7 +59,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="teachername">Teacher's Name</label>
-                            <input type="text" class="form-control" id="teachername" name="TN" placeholder="Teacher's Name ..." pattern="[a-zA-Z]{3,100}" required>
+                            <input type="text" class="form-control" id="teachername" name="TN" placeholder="Teacher's Name ..." required>
                                             </div>
                                         </div>
                                         
@@ -72,7 +72,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="teachercontactnumber">Contact No.</label>
-                            <input type="tel" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " pattern="[0 | 6-9]{1}[0-9]{9}" required>
+                            <input type="tel" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " minlength="6" maxlength="15" required>
                                             </div>
                                         </div>
                       
@@ -106,8 +106,10 @@ include "includes/sidebar.php";
                                                 <label>Designation</label>
                                                 <select class="form-control" name="TD">
                                                     <option selected="" disabled="">Select Designation</option>
+                                                    <option value="Lecturer">Lecturer</option>
                                                     <option value="Professor">Professor</option>
                                                     <option value="Assistant Professor">Assistant Professor</option>
+                                                    <option value="Associate Professor">Associate Professor</option>
                                                 </select>
                                             </div>
                                         </div>

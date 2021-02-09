@@ -35,12 +35,12 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <!--<li>
                     <a href="add_course.php">
                         <i class="la la-university"></i>
                         <span> Add Course </span>
                     </a>
-                </li>
+                </li>-->
 
                 <li>
                     <a href="addsubjectstep.php">
