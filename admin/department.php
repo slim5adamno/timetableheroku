@@ -76,7 +76,7 @@ include "includes/sidebar.php";
                                                     <option value="PG">PG</option>
                                                 </select>
 
-                                                <label>Class</label>
+                                                <label>Classroom Number</label>
                                                 <select class="form-control" id="cno" name="CNO" required >
                                                     <?php
 
