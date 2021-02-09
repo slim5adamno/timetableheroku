@@ -56,8 +56,6 @@ include "includes/sidebar.php";
                                                     echo "<input type=\"number\" class=\"form-control\" name=\"DNO\" placeholder=\"\" value=\"$num_rows\" required>"
                                                     ?>
                                                 <!--<input type="number" class="form-control" name="DNO" placeholder="" required>-->
-                                                <label>Department Title</label>
-                                                <input type="text" class="form-control" name="DN" placeholder="" required>
                                                 <label>Stream</label>
                                                 <select class="form-control" name="STREAM" required>
                                                     <option selected="" disabled="">Select Stream</option>
@@ -68,6 +66,35 @@ include "includes/sidebar.php";
                                                     <option value="VOCATIONAL">VOCATIONAL</option>
 
                                                 </select>
+                                                <label>Department Name</label>
+                                                <input type="text" class="form-control" name="DN" placeholder="" required>
+
+                                                <label>Course Type</label>
+                                                <select class="form-control" id="coursetype" name="course_type" required>
+                                                    <option selected disabled>Select</option>
+                                                    <option value="UG">UG</option>
+                                                    <option value="PG">PG</option>
+                                                </select>
+
+                                                <label>Classroom Number</label>
+                                                <select class="form-control" id="cno" name="CNO" required>
+                                                <?php
+                                                include 'connection.php';
+
+                                                $sql = "Select cno from classroom" ;
+                                                $ret = pg_query($db, $sql);
+                                                if (!$ret) {
+                                                    echo pg_last_error($db);
+                                                    exit;
+                                                }
+                                                $string = '<option selected disabled>Select</option>';
+                                                while($row = pg_fetch_row($ret)) {
+                                                    $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                }
+                                                echo $string;
+                                                pg_close($db);
+                                                ?>
+
                                             </div>
                                         </div>
                                         <div class="col-md-12">  
@@ -92,8 +119,9 @@ include "includes/sidebar.php";
                                 <thead>
                                     <tr>
                                         <th >Department No.</th>
-                                         <th >Department Name</th>
                                         <th>Stream</th>
+                                         <th >Department Name</th>
+                                        <th> Classroom No.</th>
                                          <th >Action</th>
 
                                     </tr>
@@ -110,7 +138,7 @@ include "includes/sidebar.php";
                                                             }
                                                     while ($row = pg_fetch_row($ret)) {
                                                         echo "<tr><th scope=\"row\">{$row[0]}</th>
-                                                        <td>{$row[1]}</td><td>{$row[2]}</td>"; ?>
+                                                        <td>{$row[2]}</td><td>{$row[1]}</td><td>{$row[3]}</td>"; ?>
 
                                                        
                                                         <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
