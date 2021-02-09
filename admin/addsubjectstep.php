@@ -51,27 +51,14 @@ include "includes/sidebar.php";
                                             </div>-->
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Department</label>
-                                                        <select class="form-control" id="tdepartment" name="TDP" required >
-                                                            <?php
+                                                        <label>Stream</label>
+                                                        <select class="form-control" name="STREAM" required>
+                                                            <option selected="" disabled="">Select Stream</option>
+                                                            <option value="ARTS">ARTS</option>
+                                                            <option value="COMMERCE">COMMERCE</option>
+                                                            <option value="SCIENCE">SCIENCE</option>
 
-
-                                                            include 'connection.php';
-                                                            $sql="select name from department";
-
-
-                                                            $ret=pg_query($db,$sql);
-                                                            if(!$ret) {
-                                                                echo pg_last_error($db);
-                                                                exit;
-                                                            }
-                                                            $string = '<option selected disabled>Select</option>';
-                                                            while($row = pg_fetch_row($ret)) {
-                                                                $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
-                                                            }
-                                                            echo $string;
-                                                            pg_close($db);
-                                                            ?>
+                                                            <option value="VOCATIONAL">VOCATIONAL</option>
 
                                                         </select>
                                                     </div>
@@ -88,7 +75,7 @@ include "includes/sidebar.php";
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <button class="btn btn-block btn-info rounded-0" name="add_course">Add Course</button>
+                                                        <button class="btn btn-block btn-info rounded-0" name="subject_details">Add Subject Details</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,10 +96,10 @@ include "includes/sidebar.php";
                                 <tr>
                                     <th scope="col">Subject code</th>
                                     <th scope="col">Subject Name</th>
-                                    <th scope="col">Subject Type</th>
+                                    <th scope="col">Year</th>
                                     <th scope="col">Semester</th>
-                                    <th scope="col">Course</th>
                                     <th scope="col">Department</th>
+                                    <th scope="col">Subject Type</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -120,7 +107,7 @@ include "includes/sidebar.php";
                                 <?php
                                 include 'connection.php';
 
-                                $sql = "Select * from subjects ";
+                                $sql = "Select * from subjects";
                                 $ret = pg_query($db, $sql);
                                 if (!$ret) {
                                     echo pg_last_error($db);
@@ -129,25 +116,17 @@ include "includes/sidebar.php";
                                 while ($row = pg_fetch_row($ret)) {
 
                                     // $sql="select name from department where did='$row[3]'";
-                                    $sql1="select did,cname from course where cno='$row[5]'";
 
 
 
                                     $return = pg_query($db, $sql);
-                                    $return1=pg_query($db,$sql1);
                                     if(!$return) {
                                         echo pg_last_error($db);
                                     } else {
                                         $id =pg_fetch_row($return);
 
                                     }
-                                    if(!$return1) {
-                                        echo pg_last_error($db);
-                                    } else {
-                                        $id1 =pg_fetch_row($return1);
-
-                                    }
-                                    $sql2="select name from department where did=$id1[0]";
+                                    $sql2="select name from department where did=$id[5]";
                                     $return2=pg_query($db,$sql2);
                                     if(!$return2) {
                                         echo pg_last_error($db);
@@ -157,11 +136,13 @@ include "includes/sidebar.php";
                                     }
 
                                     echo "<tr><th scope=\"row\">{$row[0]}</th>
-                        <td>{$row[1]}</td>
-                        <td>{$row[3]}</td>
-                        <td>{$row[2]}</td>
-                        <td>{$id1[1]}</td>
-                        <td>{$id2[0]}</td>" ?>
+                        <td>  {$row[1]}</td>
+                        <td>  {$row[6]}</td>
+                        <td>  {$row[2]}</td>  
+                        <td>  {$id2[0]}</td>
+                        <td>  {$row[3]}</td>
+                                       
+                        " ?>
 
 
 

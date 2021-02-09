@@ -5,13 +5,13 @@ include "includes/sidebar.php";
 <?php
 if(session_status() == PHP_SESSION_NONE)
     session_start();
-if(isset($_POST['TDP']) && isset($_POST['CTYPE'])) {
-    $_SESSION['dept']=$_POST['TDP'];
+if(isset($_POST['STREAM']) && isset($_POST['CTYPE'])) {
+    $_SESSION['stream']=$_POST['STREAM'];
     $_SESSION['ctype']=$_POST['CTYPE'];
 }
 else{
 
-    $_POST['TDP']=$_SESSION['dept'];
+    $_POST['STREAM']=$_SESSION['stream'];
     $_POST['CTYPE']=$_SESSION['ctype'];
 }
 ?>
@@ -50,11 +50,38 @@ else{
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
+                                                    <label>Department</label>
+                                                    <select class="form-control" id="tdepartment" name="TDP" required >
+                                                        <?php
+
+
+                                                        include 'connection.php';
+                                                        $sql="select name from department where ctype='$_SESSION[ctype]' and stream='$_SESSION[stream]'";
+
+
+                                                        $ret=pg_query($db,$sql);
+                                                        if(!$ret) {
+                                                            echo pg_last_error($db);
+                                                            exit;
+                                                        }
+                                                        $string = '<option selected disabled>Select</option>';
+                                                        while($row = pg_fetch_row($ret)) {
+                                                            $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                        }
+                                                        echo $string;
+                                                        pg_close($db);
+                                                        ?>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-md-12">
+                                                <div class="form-group">
                                                     <label>Course Name</label>
                                                     <select class="form-control" id="ctype" name="CNAME" required>
 
                                                         <?php
-
+/*
 
                                                         include 'connection.php';
                                                         // $sql="select name from teacher where did=(select did from department where name='$_SESSION[dept]')";
@@ -71,7 +98,18 @@ else{
                                                         }
                                                         echo $string;
                                                         pg_close($db);
-                                                        ?>
+                                                        */?>
+                                                    </select>
+                                                </div>
+                                            </div>-->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Year</label>
+                                                    <select class="form-control" id="year" name="YEAR" required>
+                                                        <option selected disabled>Select</option>
+                                                        <option value="FY">FY</option>
+                                                        <option value="SY">SY</option>
+                                                        <option value="TY">TY</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -80,9 +118,8 @@ else{
                                                     <label>Semester</label>
                                                     <select class="form-control" id="semester" name="SEM" required>
                                                         <option selected disabled>Select</option>
-                                                        <option value="FY">FY</option>
-                                                        <option value="SY">SY</option>
-                                                        <option value="TY">TY</option>
+                                                        <option value="SEM I">SEM I</option>
+                                                        <option value="SEM II">SEM II</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -136,7 +173,7 @@ else{
 
 
                                                         include 'connection.php';
-                                                        $sql="select name from teacher where did=(select did from department where name='$_SESSION[dept]')";
+                                                        $sql="select name from teacher where did in(select did from department where ctype='$_SESSION[ctype]' and stream='$_SESSION[stream]')";
 
 
 
@@ -171,7 +208,7 @@ else{
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <button class="btn btn-block btn-info rounded-0" name="add_course">Add Course</button>
+                                                        <button class="btn btn-block btn-info rounded-0" name="add_subject">Add Subject</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,10 +229,10 @@ else{
                                 <tr>
                                     <th scope="col">Subject code</th>
                                     <th scope="col">Subject Name</th>
-                                    <th scope="col">Subject Type</th>
+                                    <th scope="col">Year</th>
                                     <th scope="col">Semester</th>
-                                    <th scope="col">Course</th>
                                     <th scope="col">Department</th>
+                                    <th scope="col">Subject Type</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -203,7 +240,7 @@ else{
                                 <?php
                                 include 'connection.php';
 
-                                $sql = "Select * from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and department.did=(select did from department where name='$_SESSION[dept]') and course.ctype='$_SESSION[ctype]'";
+                                $sql = "Select * from subjects";
                                 $ret = pg_query($db, $sql);
                                 if (!$ret) {
                                     echo pg_last_error($db);
@@ -212,25 +249,17 @@ else{
                                 while ($row = pg_fetch_row($ret)) {
 
                                    // $sql="select name from department where did='$row[3]'";
-                                    $sql1="select did,cname from course where cno='$row[5]'";
 
 
 
                                     $return = pg_query($db, $sql);
-                                    $return1=pg_query($db,$sql1);
                                     if(!$return) {
                                         echo pg_last_error($db);
                                     } else {
                                         $id =pg_fetch_row($return);
 
                                     }
-                                    if(!$return1) {
-                                        echo pg_last_error($db);
-                                    } else {
-                                        $id1 =pg_fetch_row($return1);
-
-                                    }
-                                    $sql2="select name from department where did=$id1[0]";
+                                    $sql2="select name from department where did=$id[5]";
                                     $return2=pg_query($db,$sql2);
                                     if(!$return2) {
                                         echo pg_last_error($db);
@@ -240,11 +269,13 @@ else{
                                     }
 
                                     echo "<tr><th scope=\"row\">{$row[0]}</th>
-                        <td>{$row[1]}</td>
-                        <td>{$row[3]}</td>
-                        <td>{$row[2]}</td>
-                        <td>{$id1[1]}</td>
-                        <td>{$id2[0]}</td>" ?>
+                        <td>  {$row[1]}</td>
+                        <td>  {$row[6]}</td>
+                        <td>  {$row[2]}</td>  
+                        <td>  {$id2[0]}</td>
+                        <td>  {$row[3]}</td>
+                                       
+                        " ?>
 
 
 
