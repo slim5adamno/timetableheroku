@@ -84,6 +84,7 @@ include "includes/sidebar.php";
                                                     <?php
                                                         include 'connection.php';
                                                         $sql="Select name from department";
+
                                                             
 
                                                             $ret=pg_query($db,$sql);
