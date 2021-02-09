@@ -75,6 +75,32 @@ include "includes/sidebar.php";
                                                     <option value="UG">UG</option>
                                                     <option value="PG">PG</option>
                                                 </select>
+
+                                                <label>Class</label>
+                                                <select class="form-control" id="cno" name="CNO" required >
+                                                    <?php
+
+
+                                                    include 'connection.php';
+                                                    $sql="select * from classroom";
+
+
+                                                    $ret=pg_query($db,$sql);
+                                                    if(!$ret) {
+                                                        echo pg_last_error($db);
+                                                        exit;
+                                                    }
+                                                    $string = '<option selected disabled>Select</option>';
+                                                    while($row = pg_fetch_row($ret)) {
+                                                        $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                    }
+                                                    echo $string;
+                                                    pg_close($db);
+                                                    ?>
+
+                                                </select>
+
+
                                             </div>
                                         </div>
                                         <div class="col-md-12">  
