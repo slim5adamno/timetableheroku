@@ -64,7 +64,7 @@
               
                 
                  <li>
-                    <a href="view-time-table-steps.php">
+                    <a href="view_time_table.php">
                         <i class="la la-book"></i>
                         <span> View Time Table </span>
                     </a>

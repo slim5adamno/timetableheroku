@@ -79,7 +79,12 @@ if($stype == 'PRACTICAL') {
             $ret = pg_query($db, $sql);
         }
         else {
-            header("Location:gen-time-table-1.php");
+            echo '<script type="text/javascript">';
+            echo 'alert("cannot allot");';
+            echo 'window.location.href = "gen-time-table-1.php";';
+            echo '</script>';
+
+            //header("Location:gen-time-table-1.php");
         }
         /*$sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],$cid[0],'1:30-11:00','$day')";
         $ret = pg_query($db, $sql);*/

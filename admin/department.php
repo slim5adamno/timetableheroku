@@ -94,7 +94,7 @@ include "includes/sidebar.php";
 
 
                                                     include 'connection.php';
-                                                    $sql="select * from classroom";
+                                                    $sql="select * from classroom where cno not in(select cno from department)";
 
 
                                                     $ret=pg_query($db,$sql);

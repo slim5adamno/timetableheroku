@@ -48,13 +48,13 @@ include "includes/sidebar.php";
             <div class="row">
                 <div class="col-xl-4">
                     <div class="card-box">
-                        <h4 class="mt-0 font-16">No of Lecturers</h4>
+                        <h4 class="mt-0 font-16">No of Departments</h4>
                         <h2 class="text-primary my-4 text-center">
                             <i class="fa fa-user text-dark"></i>
                             <span data-plugin="counterup">
                                 <?php
                                 include 'connection.php';
-                                $sql = "select * from teacher";
+                                $sql = "select * from department";
                                 $result = pg_query($db,$sql);
                                 if(!$result) {
                                     echo pg_last_error($db);
