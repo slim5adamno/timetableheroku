@@ -255,6 +255,7 @@ include "includes/sidebar.php";
                                                 <th scope="col">Stream</th>
                                                 <th scope="col">Teacher</th>
                                                 <th scope="col">Subject</th>
+                                                <th scope="col">Subject Type</th>
                                                 <th scope="col">Classroom</th>
                                                 <th scope="col">Year</th>
                                                 <th scope="col">Semester</th>
@@ -278,7 +279,7 @@ include "includes/sidebar.php";
                                                 exit;
                                             }
                                             while ($row = pg_fetch_row($ret)) {
-                                                $sq= "select sname from subjects where sid=$row[2]";
+                                                $sq= "select sname,stype from subjects where sid=$row[2]";
                                                 $tq="select name from teacher where tid=$row[3]";
                                                 $dq="select name,stream,cno from department where did=$row[0]";
 
@@ -298,6 +299,8 @@ include "includes/sidebar.php";
                         <td>{$tid[0]}</td>
                         
                         <td>{$sid[0]}</td>
+                        <td>{$sid[1]}</td>
+
                         <td>{$did[2]}</td>
                         <td>{$row[7]}</td>
                         <td>{$row[1]}</td>  " ?>
