@@ -187,7 +187,7 @@ else{
                                                             $da = "'$_SESSION[day]'";
                                                             $ye = "'$_SESSION[year]'";
                                                             //$cn = $_POST['COURSENAME'];
-                                                            $sql = "select * from timeslot where time not in (select timeslot from allot where allot.day =$da and semester=$se and did=(select did from department where name=$dp))";
+                                                            $sql = "select * from timeslot where time not in (select timeslot from allot where allot.day =$da and semester=$se and year=$ye and did=(select did from department where name=$dp))";
                                                             //$sql = "select * from timeslot where time not in (select timeslot from allot where did =$dp and semester='$se' and allot.day = $da);";
                                                             //$sql="select * from timeslot where time not in(select timeslot from allot where )"
 
@@ -259,9 +259,10 @@ else{
 
                                 $dp="'$_SESSION[dept]'";
                                 $se="'$_SESSION[sem]'";
+                                $ye="'$_SESSION[year]'";
 
 
-                                $sql = "Select * from allot where did=(select did from department where name=$dp ) and semester=$se order by day";
+                                $sql = "Select * from allot where did=(select did from department where name=$dp ) and year=$ye and semester=$se order by day";
 
                                 $ret = pg_query($db, $sql);
                                 if (!$ret) {
@@ -282,7 +283,7 @@ else{
                         <td>{$sid[0]}</td>
                         <td>{$tid[0]}</td>
                         <td>{$row[3]}</td><td>{$row[6]}</td>" ?>
-                                    <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[6]?>&tslot=<?php echo $row[5]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td
+                                    <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[5]?>&tslot=<?php echo $row[4]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td
                                     </tr>
                                     <?php
                                 }
