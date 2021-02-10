@@ -105,7 +105,7 @@ include "includes/sidebar.php";
                         <div class="row">
                             <div id="content" class="col-md-12">
 
-                                <div class="scrollme">
+                                <!--<div class="scrollme">-->
                                 <table class="table table-responsive table-bordered content"></center>
                                     <thead >
                                     <?php
@@ -252,10 +252,12 @@ include "includes/sidebar.php";
                                             <thead>
                                             <tr>
                                                 <th scope="col">Department</th>
-                                                <th scope="col">Semester</th>
+                                                <th scope="col">Stream</th>
                                                 <th scope="col">Teacher</th>
                                                 <th scope="col">Subject</th>
                                                 <th scope="col">Classroom</th>
+                                                <th scope="col">Year</th>
+                                                <th scope="col">Semester</th>
 
                                             </tr>
                                             </thead>
@@ -278,7 +280,7 @@ include "includes/sidebar.php";
                                             while ($row = pg_fetch_row($ret)) {
                                                 $sq= "select sname from subjects where sid=$row[2]";
                                                 $tq="select name from teacher where tid=$row[3]";
-                                                $dq="select name from department where did=$row[0]";
+                                                $dq="select name,stream,cno from department where did=$row[0]";
 
 
                                                 $sr=pg_query($db,$sq);
@@ -291,10 +293,14 @@ include "includes/sidebar.php";
                                                 $did = pg_fetch_row($dr);
 
                                                 echo "<tr><th scope=\"row\">{$did[0]}</th>
-                        <td>{$row[1]}</td>
-                        <td>{$sid[0]}</td>
+
+                        <td>{$did[1]}</td>            
                         <td>{$tid[0]}</td>
-                        <td>{$row[4]}</td>" ?>
+                        
+                        <td>{$sid[0]}</td>
+                        <td>{$did[2]}</td>
+                        <td>{$row[7]}</td>
+                        <td>{$row[1]}</td>  " ?>
 
                                                 <?php
                                             }
@@ -310,7 +316,7 @@ include "includes/sidebar.php";
 
                                     </tbody>
                                 </table>
-                            </div>
+                            <!--</div>-->
                             </div>
                         </div> <!-- end card-box-->
                     </div>
