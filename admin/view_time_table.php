@@ -204,7 +204,7 @@ include "includes/sidebar.php";
 
                                         for($i=0;$i<count($days);$i++){
                                             echo "<tr><th>$days[$i]</th>";
-                                            $time_query = "select timeslot,sname,name,stype,timeslot_id from allot,subjects,teacher where allot.did = (select did from department where name='$dept') and allot.semester='$sem' and day='$days[$i]' and  allot.sid = subjects.sid and allot.tid=teacher.tid order by timeslot_id";
+                                            $time_query = "select timeslot,sname,name,stype,timeslot_id from allot,subjects,teacher where allot.did = (select did from department where name='$dept') and allot.semester='$sem' and allot.year='$year' and day='$days[$i]' and  allot.sid = subjects.sid and allot.tid=teacher.tid order by timeslot_id";
 
                                             $ret = pg_query($db,$time_query);
                                             $ret_arr = pg_fetch_all($ret);

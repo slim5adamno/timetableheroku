@@ -229,10 +229,11 @@ else{
                                 <tr>
                                     <th scope="col">Subject code</th>
                                     <th scope="col">Subject Name</th>
+                                    <th scope="col">Teacher Name</th>
                                     <th scope="col">Year</th>
+                                    <th scope="col">Subject Type</th>
                                     <th scope="col">Semester</th>
                                     <th scope="col">Department</th>
-                                    <th scope="col">Subject Type</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -267,13 +268,24 @@ else{
                                         $id2 =pg_fetch_row($return2);
 
                                     }
+                                    $sql3="select name from teacher where tid=$row[4]";
+                                    $return3=pg_query($db,$sql3);
+                                    if(!$return3) {
+                                        echo pg_last_error($db);
+                                    } else {
+                                        $id3 =pg_fetch_row($return3);
+
+                                    }
+
 
                                     echo "<tr><th scope=\"row\">{$row[0]}</th>
                         <td>  {$row[1]}</td>
+                        <td>  {$id3[0]}</td>
                         <td>  {$row[6]}</td>
+                        <td>  {$row[3]}</td>
                         <td>  {$row[2]}</td>  
                         <td>  {$id2[0]}</td>
-                        <td>  {$row[3]}</td>
+                        
                                        
                         " ?>
 
