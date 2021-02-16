@@ -75,6 +75,7 @@ include "includes/sidebar.php";
                             <input type="tel" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " minlength="10" maxlength="10" required>
                                             </div>
                                         </div>
+
                       
                                         <div class="col-md-6">  
                                             <div class="form-group">
