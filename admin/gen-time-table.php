@@ -285,20 +285,21 @@ include "includes/sidebar.php";
                                     <th scope="col">Time Slot</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Teacher</th>
-                                    <th scope="col">Classroom</th>
-                                    <th scope="col">Action</th>
+                                    <!--<th scope="col">Classroom</th>-->
+                                    <!--<th scope="col">Action</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
                         
                         include 'connection.php';
-                     
-                        $dp="'$_SESSION[dept]'";
-                        $se="'$_SESSION[sem]'";
-                       
 
-                       $sql = "Select * from allot where did=(select did from department where name=$dp ) and semester=$se order by day";
+                        $stream="'$_SESSION[stream]'";
+                        $ctype="'$_SESSION[ctype]'";
+                        $stype="'$_SESSION[stype]'";
+
+
+                       $sql = "Select * from allot where did in(select did from department where stream = $stream and ctype= $ctype) and sid in(select sid from subjects where stype=$stype)";
                       
                         $ret = pg_query($db, $sql);
                         if (!$ret) {
@@ -314,12 +315,12 @@ include "includes/sidebar.php";
 
                             $sid = pg_fetch_row($sr);
                             $tid = pg_fetch_row($tr);
-                            echo "<tr><th scope=\"row\">{$row[6]}</th>
-                        <td>{$row[5]}</td>
+                            echo "<tr><th scope=\"row\">{$row[5]}</th>
+                        <td>{$row[4]}</td>
                         <td>{$sid[0]}</td>
                         <td>{$tid[0]}</td>
-                        <td>{$row[4]}</td>" ?>
-                        <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[6]?>&tslot=<?php echo $row[5]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td                       
+                        <!--<td>{$row[4]}</td>-->" ?>
+                       <!-- <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[6]?>&tslot=<?php echo $row[5]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td> -->
                       </tr>
                        <?php
                         }
