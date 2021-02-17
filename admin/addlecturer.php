@@ -72,7 +72,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="teachercontactnumber">Contact No.</label>
-                            <input type="tel" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " minlength="10" maxlength="10" required>
+                            <input type="tel" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " minlength="10" maxlength="10" pattern="[7-9]{1}[0-9]{9}" required>
                                             </div>
                                         </div>
 
