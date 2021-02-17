@@ -13,7 +13,7 @@ include 'connection.php';
 
 $sql="select did from department where name='$department'";
 $sql1="select tid from teacher where name='$tname'";
-$sql2="select * from subjects";
+$sql2="select * from subjects order by sid desc limit 1";
 
 $ret = pg_query($db, $sql);
 $ret1 = pg_query($db,$sql1);
@@ -34,12 +34,12 @@ if(!$ret1) {
 if(!$ret2) {
     echo pg_last_error($db);
 } else {
-    $num_rows =pg_num_rows($ret2);
+    $num_rows =pg_fetch_row($ret2);
 
 }
-$num_rows++;
+$num_rows[0]++;
 
-$sql="insert into subjects values  ($num_rows,'$sname','$sem','$subtype',$id1[0],$id[0],'$year','$subcode')";
+$sql="insert into subjects values  ($num_rows[0],'$sname','$sem','$subtype',$id1[0],$id[0],'$year','$subcode')";
 
 
 

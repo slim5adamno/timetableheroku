@@ -45,15 +45,15 @@ include "includes/sidebar.php";
                                                  <?php
                                                     include 'connection.php';
 
-                                                    $sql = "Select * from department" ;
+                                                    $sql = "Select did from department order by did desc limit 1" ;
                                                         $ret = pg_query($db, $sql);
                                                     if (!$ret) {
                                                         echo pg_last_error($db);
                                                             exit;
                                                             }
-                                                    $num_rows = pg_num_rows($ret);
-                                                    $num_rows++;
-                                                    echo "<input type=\"number\" class=\"form-control\" name=\"DNO\" placeholder=\"\" value=\"$num_rows\" required>"
+                                                    $num_rows = pg_fetch_row($ret);
+                                                    $num_rows[0]++;
+                                                    echo "<input type=\"number\" class=\"form-control\" name=\"DNO\" placeholder=\"\" value=\"$num_rows[0]\" required>"
                                                     ?>
                                             </div>
                                         </div>

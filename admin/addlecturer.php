@@ -41,17 +41,17 @@ include "includes/sidebar.php";
                                                 <?php
                                 include 'connection.php';
 
-                                $sql = "Select * from teacher";
+                                $sql = "Select tid from teacher order by tid desc limit 1";
 
                                 $ret = pg_query($db, $sql);
                                 if (!$ret) {
                                     echo pg_last_error($db);
                                     exit;
                                 }
-                                $num_rows = pg_num_rows($ret);
-                                $num_rows++;
+                                $num_rows = pg_fetch_row($ret);
+                                $num_rows[0]++;
 
-                                echo "<input type=\"number\" class=\"form-control\" id=\"facultyno\" name=\"TF\" placeholder=\"Faculty No ...\" value = \"$num_rows\" required>";
+                                echo "<input type=\"number\" class=\"form-control\" id=\"facultyno\" name=\"TF\" placeholder=\"Faculty No ...\" value = \"$num_rows[0]\" required>";
                                 ?>
                                 <!--<input type="number" class="form-control" id="facultyno" name="TF" placeholder="Faculty No ..." required>-->
                                             </div>
