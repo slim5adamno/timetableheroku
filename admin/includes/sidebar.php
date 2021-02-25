@@ -14,11 +14,26 @@
                     </a>
                 </li>
 
-                <li>
+               <!-- <li>
                     <a href="department.php">
                         <i class="la la-university"></i>
                         <span> Add Department </span>
                     </a>
+                </li>-->
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="la la-university"></i>
+                        <span> Department </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="department.php">Add Department</a>
+                        </li>
+                        <li>
+                            <a href="view-department.php">View Department</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);">
@@ -41,13 +56,27 @@
                         <span> Add Course </span>
                     </a>
                 </li>-->
-
                 <li>
+                    <a href="javascript: void(0);">
+                        <i class="la la-home"></i>
+                        <span> Subjects </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="addsubjectstep.php">Add Subject</a>
+                        </li>
+                        <li>
+                            <a href="view-subject.php">View Subjects</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li>
                     <a href="addsubjectstep.php">
                         <i class="la la-home"></i>
                         <span> Add Subjects </span>
                     </a>
-                </li>
+                </li>-->
                
                 <li>
                     <a href="venue.php">

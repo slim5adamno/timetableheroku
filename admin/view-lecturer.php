@@ -70,11 +70,11 @@ include "includes/sidebar.php";
                                 }
 
                             echo "<tr><th scope=\"row\">{$row[0]}</th>
-                        <td>{$row[1]}</td>
-                        <td>{$row[2]}</td>
-                        <td>{$id[0]}</td>
-                        <td>{$row[3]}</td>
-                        <td>{$row[4]}</td>"; ?>  
+                        <td style=\"text-align:center\">{$row[1]}</td>
+                        <td style=\"text-align:center\">{$row[2]}</td>
+                        <td style=\"text-align:center\">{$id[0]}</td>
+                        <td style=\"text-align:center\">{$row[3]}</td>
+                        <td style=\"text-align:center\">{$row[4]}</td>"; ?>
                        <td><a href="deleteteacher.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
                         <?php
