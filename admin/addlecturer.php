@@ -49,9 +49,14 @@ include "includes/sidebar.php";
                                     exit;
                                 }
                                 $num_rows = pg_fetch_row($ret);
-                                $num_rows[0]++;
+                                if($num_rows == 0) {
+                                    echo "<input type=\"number\" class=\"form-control\" id=\"facultyno\" name=\"TF\" placeholder=\"Faculty No ...\" value = \"1\" required>";
 
-                                echo "<input type=\"number\" class=\"form-control\" id=\"facultyno\" name=\"TF\" placeholder=\"Faculty No ...\" value = \"$num_rows[0]\" required>";
+                                }
+                                else {
+                                    $num_rows[0]++;
+                                    echo "<input type=\"number\" class=\"form-control\" id=\"facultyno\" name=\"TF\" placeholder=\"Faculty No ...\" value = \"$num_rows[0]\" required>";
+                                }
                                 ?>
                                 <!--<input type="number" class="form-control" id="facultyno" name="TF" placeholder="Faculty No ..." required>-->
                                             </div>
