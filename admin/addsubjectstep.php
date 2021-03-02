@@ -126,7 +126,7 @@ include "includes/sidebar.php";
                                         $id =pg_fetch_row($return);
 
                                     }
-                                    $sql2="select name from department where did=$id[5]";
+                                    $sql2="select name from department where did=$row[5]";
                                     $return2=pg_query($db,$sql2);
                                     if(!$return2) {
                                         echo pg_last_error($db);

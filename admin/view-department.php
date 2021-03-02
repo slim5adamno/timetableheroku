@@ -59,9 +59,11 @@ include "includes/sidebar.php";
                                 }
                                 while ($row = pg_fetch_row($ret)) {
                                     echo "<tr><th scope=\"row\" style=\"text-align:center\">{$row[0]}</th>
-                                                        <td style=\"text-align:center\">{$row[2]}</td><td style=\"text-align:center\">{$row[1]}</td><td style=\"text-align:center\">{$row[3]}</td><td style=\"text-align:center\">{$row[4]}</td>"; ?>
+                                                        <td style=\"text-align:center\">{$row[2]}</td>
+                                                        <td style=\"text-align:center\">{$row[1]}</td>
+                                                        <td style=\"text-align:center\">{$row[3]}</td>
+                                                        <td style=\"text-align:center\">{$row[4]}</td>"; ?>
 
-                                    <td style=\"text-align:center\"><a href="updatedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"> Update Department</a></td>
 
                                     <td style=\"text-align:center\"><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
