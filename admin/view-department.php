@@ -42,7 +42,6 @@ include "includes/sidebar.php";
                                     <th >Department Name</th>
                                     <th >Course Type</th>
                                     <th> Classroom No.</th>
-                                    <th> Update</th>
                                     <th >Action</th>
 
                                 </tr>
