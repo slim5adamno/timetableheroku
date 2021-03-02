@@ -20,10 +20,10 @@ include "includes/sidebar.php";
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                <li class="breadcrumb-item active">Add/Modify Venue</li>
+                                <li class="breadcrumb-item active">Add/Modify Classroom</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Add/Modify Venue</h4>
+                        <h4 class="page-title">Add/Modify Classroom</h4>
                     </div>
                 </div>
             </div>     
@@ -38,8 +38,8 @@ include "includes/sidebar.php";
                                     <div class="col-md-12">  
                                        
                                         <div class="form-group">
-                                        <label for="CN">Classroom's Name</label>
-                                        <input type="text" class="form-control" id="classroomname" name="CN" placeholder="Classroom's Name ...">
+                                        <label for="CN">Classroom's Number</label>
+                                        <input type="number" class="form-control" id="classroomname" name="CN" placeholder="Classroom's Number ...">
                                         </div>
                                     </div>
                                     
