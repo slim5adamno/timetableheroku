@@ -85,13 +85,13 @@ include "includes/sidebar.php";
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                       <!-- <div class="col-md-12">
                                             <div class="form-group">
 
                                                 <label>Classroom Number</label>
                                                 <select class="form-control" id="cno" name="CNO" required >
                                                     <?php
-
+/*
 
                                                     include 'connection.php';
                                                     $sql="select * from classroom where cno not in(select cno from department)";
@@ -108,11 +108,11 @@ include "includes/sidebar.php";
                                                     }
                                                     echo $string;
                                                     pg_close($db);
-                                                    ?>
+                                                    */?>
 
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
 
 
 

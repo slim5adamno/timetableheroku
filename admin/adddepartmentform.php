@@ -1,13 +1,11 @@
 <?php
 
 include 'connection.php';
-if (isset($_POST['DNO']) && isset($_POST['DN']) && isset($_POST['STREAM']) && isset($_POST['course_type']) && isset($_POST['CNO'])) {
+if (isset($_POST['DNO']) && isset($_POST['DN']) && isset($_POST['STREAM']) && isset($_POST['course_type'])) {
     $name =strtoupper($_POST['DN']);
     $dno = $_POST['DNO'];
     $st =strtoupper($_POST['STREAM']);
     $ct = strtoupper($_POST['course_type']);
-    $cno = $_POST['CNO'];
-   
 } else {
 
     die();
@@ -16,7 +14,7 @@ if (isset($_POST['DNO']) && isset($_POST['DN']) && isset($_POST['STREAM']) && is
 
 
 
-$sql="insert into department values($dno,'$name','$st','$ct',$cno)";
+$sql="insert into department values($dno,'$name','$st','$ct')";
 
 
 $ret = pg_query($db, $sql);
