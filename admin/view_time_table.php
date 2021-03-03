@@ -282,17 +282,20 @@ include "includes/sidebar.php";
                                             while ($row = pg_fetch_row($ret)) {
                                                 $sq= "select sname,stype from subjects where sid=$row[2]";
                                                 $tq="select name from teacher where tid=$row[3]";
-                                                $dq="select name,stream,cno from department where did=$row[0]";
+                                                $dq="select name,stream from department where did=$row[0]";
+                                                $cn="select cno from classroom where did=$row[0] and year='$row[7]' and semester='$row[1]'";
+
 
 
                                                 $sr=pg_query($db,$sq);
                                                 $tr=pg_query($db,$tq);
                                                 $dr=pg_query($db,$dq);
-
+                                                $cr=pg_query($db,$cn);
 
                                                 $sid = pg_fetch_row($sr);
                                                 $tid = pg_fetch_row($tr);
                                                 $did = pg_fetch_row($dr);
+                                                $cid = pg_fetch_row(($cr));
 
                                                 echo "<tr><th scope=\"row\">{$did[0]}</th>
 
@@ -302,7 +305,7 @@ include "includes/sidebar.php";
                         <td>{$sid[0]}</td>
                         <td>{$sid[1]}</td>
 
-                        <td>{$did[2]}</td>
+                        <td>{$cid[0]}</td>
                         <td>{$row[7]}</td>
                         <td>{$row[1]}</td>  " ?>
 

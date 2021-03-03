@@ -34,14 +34,13 @@ include "includes/sidebar.php";
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive nowrap table-bordered">
                                 <thead>
                                 <tr>
                                     <th >Department No.</th>
                                     <th>Stream</th>
                                     <th >Department Name</th>
                                     <th >Course Type</th>
-                                    <th> Classroom No.</th>
                                     <th >Action</th>
 
                                 </tr>
@@ -61,7 +60,7 @@ include "includes/sidebar.php";
                                                         <td style=\"text-align:center\">{$row[2]}</td>
                                                         <td style=\"text-align:center\">{$row[1]}</td>
                                                         <td style=\"text-align:center\">{$row[3]}</td>
-                                                        <td style=\"text-align:center\">{$row[4]}</td>"; ?>
+                                                        "; ?>
 
 
                                     <td style=\"text-align:center\"><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>

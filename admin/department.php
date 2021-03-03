@@ -141,7 +141,6 @@ include "includes/sidebar.php";
                                         <th>Stream</th>
                                          <th >Department Name</th>
                                         <th >Course Type</th>
-                                        <th> Classroom No.</th>
                                          <th >Action</th>
 
                                     </tr>
@@ -158,7 +157,7 @@ include "includes/sidebar.php";
                                                             }
                                                     while ($row = pg_fetch_row($ret)) {
                                                         echo "<tr><th scope=\"row\">{$row[0]}</th>
-                                                        <td>{$row[2]}</td><td>{$row[1]}</td><td>{$row[3]}</td><td>{$row[4]}</td>"; ?>
+                                                        <td>{$row[2]}</td><td>{$row[1]}</td><td>{$row[3]}</td>"; ?>
 
                                                        
                                                         <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>

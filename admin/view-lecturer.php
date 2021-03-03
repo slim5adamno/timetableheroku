@@ -34,7 +34,7 @@ include "includes/sidebar.php";
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive nowrap table-bordered">
                                 <thead>
                                     <tr>
                                     <th scope="col">Faculty No.</th>

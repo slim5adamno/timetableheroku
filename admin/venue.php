@@ -36,13 +36,62 @@ include "includes/sidebar.php";
                                 <div class="row">
                                     
                                     <div class="col-md-12">  
-                                       
                                         <div class="form-group">
                                         <label for="CN">Classroom's Number</label>
-                                        <input type="number" class="form-control" id="classroomname" name="CN" placeholder="Classroom's Number ...">
+                                        <input type="number" class="form-control" id="classroomname" name="CN" placeholder="Classroom's Number ..." required>
                                         </div>
                                     </div>
-                                    
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Department</label>
+                                            <select class="form-control" id="tdepartment" name="TDP" required >
+                                                <?php
+
+
+                                                include 'connection.php';
+                                                $sql="select name from department";
+
+
+                                                $ret=pg_query($db,$sql);
+                                                if(!$ret) {
+                                                    echo pg_last_error($db);
+                                                    exit;
+                                                }
+                                                $string = '<option selected disabled>Select</option>';
+                                                while($row = pg_fetch_row($ret)) {
+                                                    $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                }
+                                                echo $string;
+                                                pg_close($db);
+                                                ?>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Year</label>
+                                            <select class="form-control" id="year" name="YEAR" required>
+                                                <option selected disabled>Select</option>
+                                                <option value="FY">FY</option>
+                                                <option value="SY">SY</option>
+                                                <option value="TY">TY</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Semester</label>
+                                            <select class="form-control" id="semester" name="SEM" required>
+                                                <option selected disabled>Select</option>
+                                                <option value="SEM I">SEM I</option>
+                                                <option value="SEM II">SEM II</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12">  
                                         <div class="form-group">
                                            <button type="submit" class="btn btn-block btn-info rounded-0" id="submit" name="add-venue">Add Venue</button> 
@@ -65,7 +114,10 @@ include "includes/sidebar.php";
                                 <thead>
                                     <tr>
                                     <th scope="col">Classroom</th>
-                                    <th scope="col">Action</th>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Semester</th>
+                                        <th scope="col">Department</th>
+                                        <th scope="col">Action</th>
                                     
                                     </tr>
                                 </thead>
@@ -79,8 +131,23 @@ include "includes/sidebar.php";
                      echo pg_last_error($db);
                         exit;
                         }
+
                 while ($row = pg_fetch_row($ret)) {
+
+                    $sql2="select name from department where did=$row[3]";
+                    $return2=pg_query($db,$sql2);
+                    if(!$return2) {
+                        echo pg_last_error($db);
+                    } else {
+                        $id2 =pg_fetch_row($return2);
+
+                    }
                     echo "<tr><th scope=\"row\">{$row[0]}</th>
+                        <td>  {$row[1]}</td>
+                        <td>  {$row[2]}</td>  
+                        <td>  {$id2[0]}</td>
+              
+
                     "?>
                    
                     <td><a href="deleteclass.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
