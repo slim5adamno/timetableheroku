@@ -283,7 +283,7 @@ include "includes/sidebar.php";
                                                 $sq= "select sname,stype from subjects where sid=$row[2]";
                                                 $tq="select name from teacher where tid=$row[3]";
                                                 $dq="select name,stream from department where did=$row[0]";
-                                                $cn="select cno from classroom where did=$row[0] and year='$row[7]' and semester='$row[1]'";
+                                                $cn="select cno from classroom_allot where did=$row[0] and year='$row[7]' and semester='$row[1]'";
 
 
 

@@ -37,8 +37,8 @@ include "includes/sidebar.php";
                                     
                                     <div class="col-md-12">  
                                         <div class="form-group">
-                                        <label for="CN">Classroom's Number</label>
-                                        <input type="number" class="form-control" id="classroomname" name="CN" placeholder="Classroom's Number ..." required>
+                                        <label for="CN">Classroom's Name</label>
+                                        <input type="number" class="form-control" id="classroomname" name="CN" placeholder="Classroom's Name ..." required>
                                         </div>
                                     </div>
 
@@ -91,6 +91,16 @@ include "includes/sidebar.php";
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Time</label>
+                                            <select class="form-control" id="Time" name="TIME" required>
+                                                <option selected disabled>Select</option>
+                                                <option value="MORNING">MORNING</option>
+                                                <option value="AFTERNOON">AFTERNOON</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-12">  
                                         <div class="form-group">
@@ -110,13 +120,14 @@ include "includes/sidebar.php";
                <div class="col-md-8">
                 <<div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" data-page-length="50" class="table dt-responsive nowrap">
                                 <thead>
                                     <tr>
-                                    <th scope="col">Classroom</th>
+                                    <th scope="col">Classroom Name</th>
                                         <th scope="col">Year</th>
                                         <th scope="col">Semester</th>
                                         <th scope="col">Department</th>
+                                        <th scope="col">Time</th>
                                         <th scope="col">Action</th>
                                     
                                     </tr>
@@ -125,7 +136,7 @@ include "includes/sidebar.php";
                     <?php
                    include 'connection.php';
 
-                 $sql = "Select * from classroom" ;
+                 $sql = "Select * from classroom_allot" ;
                     $ret = pg_query($db, $sql);
                 if (!$ret) {
                      echo pg_last_error($db);
@@ -134,7 +145,7 @@ include "includes/sidebar.php";
 
                 while ($row = pg_fetch_row($ret)) {
 
-                    $sql2="select name from department where did=$row[3]";
+                    $sql2="select name from department where did=$row[1]";
                     $return2=pg_query($db,$sql2);
                     if(!$return2) {
                         echo pg_last_error($db);
@@ -143,14 +154,15 @@ include "includes/sidebar.php";
 
                     }
                     echo "<tr><th scope=\"row\">{$row[0]}</th>
-                        <td>  {$row[1]}</td>
-                        <td>  {$row[2]}</td>  
+                        <td>  {$row[2]}</td>
+                        <td>  {$row[3]}</td>  
                         <td>  {$id2[0]}</td>
+                        <td> {$row[4]}</td>
               
 
                     "?>
                    
-                    <td><a href="deleteclass.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                    <td><a href="deleteclass.php?d_id=<?php echo $row[0]?>&time=<?php echo $row[4]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
                <?php }
    
