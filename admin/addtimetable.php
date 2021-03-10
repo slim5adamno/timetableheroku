@@ -33,7 +33,7 @@ $did = pg_fetch_row($dr);
 
 echo "Subject id is ".$sid[0];
 echo "Teacher id is ".$tid[0];
-
+//TODO : TIMESLOT id=0 or Timeslot id=1 does not give the required blockage. Please check this bug in next Update
 if($stype == 'PRACTICAL') {
     if($timeslot =='7:30-11:00') {
         $is_timeslot_blocked_query="select timeslot_id from allot where timeslot_id=0 or timeslot_id=1 or timeslot_id=2 or timeslot_id=3";
@@ -128,7 +128,7 @@ else {
     else {
         $timeslot_id=$position;
     }
-    $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'$timeslot','$day',$timeslot_id,'$year')";
+    $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'$timeslot','$day',$timeslot_id,'$year',$class)";
 
 
     $ret = pg_query($db, $sql);

@@ -187,7 +187,7 @@ else{
                                                             $da = "'$_SESSION[day]'";
                                                             $ye = "'$_SESSION[year]'";
                                                             //$cn = $_POST['COURSENAME'];
-                                                            $sql = "select * from timeslot where time not in (select timeslot from allot where allot.day =$da and semester=$se and year=$ye and did=(select did from department where name=$dp))";
+                                                            $sql = "select * from timeslot";
                                                             //$sql = "select * from timeslot where time not in (select timeslot from allot where did =$dp and semester='$se' and allot.day = $da);";
                                                             //$sql="select * from timeslot where time not in(select timeslot from allot where )"
 
@@ -203,6 +203,37 @@ else{
                                                             echo $string;
                                                             pg_close($db);
                                                         }
+                                                        ?>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <label for="classroom_no">Classroom Number</label>
+
+                                                    <select class="form-control" id="classroom_no" name="CR" required >
+                                                        <?php
+                                                        print_r($_SESSION);
+
+                                                        include 'connection.php';
+                                                        // $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
+                                                        // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
+                                                        // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
+                                                        $sql="select * from classroom_allot where did in(select did from department where name='$_SESSION[dept]' and stream='$_SESSION[stream]')";
+                                                        $ret=pg_query($db,$sql);
+                                                        pg_last_error($db);
+                                                        if(!$ret) {
+                                                            echo pg_last_error($db);
+                                                            exit;
+                                                        }
+                                                        $string = '<option selected disabled>Select</option>';
+                                                        while($row = pg_fetch_row($ret)) {
+                                                            $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                        }
+                                                        echo $string;
+                                                        pg_close($db);
                                                         ?>
 
                                                     </select>
@@ -261,7 +292,7 @@ else{
                                 $ye="'$_SESSION[year]'";
 
 
-                                $sql = "Select * from allot where did=(select did from department where name=$dp ) and year=$ye and semester=$se order by day";
+                                $sql = "Select * from allot where did in(select did from department where name=$dp) and year=$ye and semester=$se order by day";
 
                                 $ret = pg_query($db, $sql);
                                 if (!$ret) {
