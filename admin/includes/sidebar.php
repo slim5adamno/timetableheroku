@@ -93,7 +93,7 @@
               
                 
                  <li>
-                    <a href="view_time_table.php">
+                    <a href="view_time_table_tt1.php">
                         <i class="la la-book"></i>
                         <span> View Time Table </span>
                     </a>
