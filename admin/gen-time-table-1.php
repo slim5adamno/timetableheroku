@@ -7,7 +7,7 @@ if(session_status() == PHP_SESSION_NONE)
     session_start();
 if(isset($_POST['TDP']) && isset($_POST['YEAR']) && isset($_POST['SEM'])) {
     $arr = explode('*',$_POST['TDP']);
-    $_SESSION['dept_id']=intval($arr[0]);
+    $_SESSION['dept_id']= $arr[0];
     $_SESSION['dept']=$arr[1];
     $_SESSION['year']=$_POST['YEAR'];
     $_SESSION['sem']=$_POST['SEM'];
@@ -99,7 +99,7 @@ else{
                                                         // $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
                                                        // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
                                                        // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
-                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=$_SESSION[dept]";
+                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=$_SESSION[dept_id]";
                                                         $ret=pg_query($db,$sql);
                                                         pg_last_error($db);
                                                         if(!$ret) {
