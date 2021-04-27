@@ -99,7 +99,8 @@ else{
                                                         // $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
                                                        // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
                                                        // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
-                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=$_SESSION[dept_id]";
+                                                        $dept_id = intval($_SESSION['dept_id']);
+                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=$dept_id";
                                                         $ret=pg_query($db,$sql);
                                                         pg_last_error($db);
                                                         if(!$ret) {
