@@ -92,16 +92,16 @@ include "includes/sidebar.php";
 
 
                                                                                         include 'connection.php';
-                                                                                        $sql="select name from department where stream='$_SESSION[stream]' and ctype='$_SESSION[ctype]'";
+                                                                                        $sql="select * from department where stream='$_SESSION[stream]' and ctype='$_SESSION[ctype]'";
 
                                                                                             $ret=pg_query($db,$sql);
                                                                                             if(!$ret) {
                                                                                         echo pg_last_error($db);
                                                                                             exit;
                                                                                                 }
-                                                                                            $string = '<option selected disabled>Select</option>';
+                                                                                            $string = "<option selected disabled>Select</option>";
                                                                                         while($row = pg_fetch_row($ret)) {
-                                                                                        $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                                                        $string .="<option value=\"$row[0]*$row[1]\">$row[1] ---- $row[3] </option>";
                                                                                         }
                                                                                             echo $string;
                                                                                             pg_close($db);
