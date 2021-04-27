@@ -184,14 +184,14 @@ else{
                                                         }
                                                         $string = "<option selected disabled>Select</option>";
                                                         while($row = pg_fetch_row($ret)) {
-                                                            $sql1="select name from department where did=$row[5]";
+                                                            $sql1="select * from department where did=$row[5]";
                                                             $ret1=pg_query($db,$sql1);
                                                             if(!$ret1) {
                                                                 echo pg_last_error($db);
                                                                 exit;
                                                             }
                                                             $id = pg_fetch_row($ret1);
-                                                            $string .="<option value=\"$row[0]\">$row[1] ------ $id[0]</option>";
+                                                            $string .="<option value=\"$row[0]\">$row[1] ------ $id[1] ----- $id[2] ----- $id[3]</option>";
                                                         }
                                                         echo $string;
                                                         pg_close($db);
