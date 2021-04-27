@@ -56,7 +56,7 @@ else{
 
 
                                                         include 'connection.php';
-                                                        $sql="select name from department where ctype='$_SESSION[ctype]' and stream='$_SESSION[stream]'";
+                                                        $sql="select * from department where ctype='$_SESSION[ctype]' and stream='$_SESSION[stream]'";
 
 
                                                         $ret=pg_query($db,$sql);
@@ -64,9 +64,9 @@ else{
                                                             echo pg_last_error($db);
                                                             exit;
                                                         }
-                                                        $string = '<option selected disabled>Select</option>';
+                                                        $string = "<option selected disabled>Select</option>";
                                                         while($row = pg_fetch_row($ret)) {
-                                                            $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                            $string .="<option value=\"$row[0]\">$row[1] ----- $row[2] ----- $row[3]</option>";
                                                         }
                                                         echo $string;
                                                         pg_close($db);
@@ -173,7 +173,7 @@ else{
 
 
                                                         include 'connection.php';
-                                                        $sql="select name from teacher where did in(select did from department where ctype='$_SESSION[ctype]' and stream='$_SESSION[stream]')";
+                                                        $sql="select * from teacher where did in(select did from department where ctype='$_SESSION[ctype]' and stream='$_SESSION[stream]')";
 
 
 
@@ -182,9 +182,16 @@ else{
                                                             echo pg_last_error($db);
                                                             exit;
                                                         }
-                                                        $string = '<option selected disabled>Select</option>';
+                                                        $string = "<option selected disabled>Select</option>";
                                                         while($row = pg_fetch_row($ret)) {
-                                                            $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                            $sql1="select name from department where did=$row[5]";
+                                                            $ret1=pg_query($db,$sql1);
+                                                            if(!$ret1) {
+                                                                echo pg_last_error($db);
+                                                                exit;
+                                                            }
+                                                            $id = pg_fetch_row($ret1);
+                                                            $string .="<option value=\"$row[0]\">$row[1] ------ $id[0]</option>";
                                                         }
                                                         echo $string;
                                                         pg_close($db);

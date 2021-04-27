@@ -98,7 +98,7 @@
                         <span> View Time Table </span>
                     </a>
                 </li>
-                <li class="d-md-none d-sm-block">
+                <li class="d-md-none d-sm-blocka">
                     <a href="logout.php">
                         <i class="la la-sign-out"></i>
                         <span> Log Out </span>

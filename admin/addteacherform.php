@@ -5,29 +5,16 @@ if (isset($_POST['TF']) && isset($_POST['TN']) && isset($_POST['TD']) && isset($
     $name =strtoupper($_POST['TN']);
     $facno = $_POST['TF'];
     $designation =strtoupper($_POST['TD']);
-    $department =strtoupper($_POST['TDP']);
+    $department =intval($_POST['TDP']);
     $contact = $_POST['TP'];
     $email = strtoupper($_POST['TE']);
+
 } else {
 
     die();
 }
 
-
-  
-$sql="select did from department where name='$department'"; 
-
-
-$ret = pg_query($db, $sql);
-if(!$ret) {
-   echo pg_last_error($db);
-} else {
-    $id =pg_fetch_row($ret);
-  
-}
-
-
-$sql="insert into teacher values  ($facno,'$name','$designation','$contact','$email',$id[0])";
+$sql="insert into teacher values($facno,'$name','$designation','$contact','$email',$department)";
 
 
 $ret = pg_query($db, $sql);

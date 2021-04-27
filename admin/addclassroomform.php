@@ -14,7 +14,7 @@ if (isset($_POST['CN']) && isset($_POST['TDP']) && isset($_POST['SEM']) && isset
     die();
 }
 
-$sql="select did from department where name='$dept'";
+$sql="select did from department where did='$dept'";
 
 
 $ret = pg_query($db, $sql);

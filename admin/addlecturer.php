@@ -89,7 +89,8 @@ include "includes/sidebar.php";
                                                     <option selected="" disabled="">Select Department</option>
                                                     <?php
                                                         include 'connection.php';
-                                                        $sql="Select name from department";
+                                                        $sql="Select * from department order by name";
+
 
                                                             
 
@@ -97,10 +98,11 @@ include "includes/sidebar.php";
                                                             if(!$ret) {
                                                                 echo pg_last_error($db);
                                                                 exit;
-                                                            } 
-                                                            $string = '<option selected disabled>Select</option>';
+                                                            }
+
+                                                            $string = "<option selected disabled>Select</option>";
                                                             while($row = pg_fetch_row($ret)) {
-                                                                $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                                $string .= "<option value=\"$row[0]\"> $row[1] ----- $row[2] ----- $row[3]</option>;";
                                                             }
                                                             echo $string;
                                                             pg_close($db);
@@ -166,7 +168,7 @@ include "includes/sidebar.php";
                                     $sql="select name from department where did=$row[5]";
 
                                     $return = pg_query($db, $sql);
-                                    if(!$ret) {
+                                    if(!$return) {
                                         echo pg_last_error($db);
                                     } else {
                                         $id =pg_fetch_row($return);
