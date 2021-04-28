@@ -37,7 +37,7 @@ echo "Teacher id is ".$tid[0];
 //TODO : TIMESLOT id=0 or Timeslot id=1 does not give the required blockage. Please check this bug in next Update
 if($stype == 'PRACTICAL') {
     if($timeslot =='7:30-11:00') {
-        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day=$day and year=$year and semester=$sem and timeslot_id in(1,2,3) order by timeslot_id";
+        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day='$day' and year='$year' and semester='$sem' and timeslot_id in(1,2,3) order by timeslot_id";
         $tbq = pg_query($db,$is_timeslot_blocked_query);
         if(!$tbq){
             echo pg_last_error($db);
@@ -62,7 +62,7 @@ if($stype == 'PRACTICAL') {
         }
     } else if($timeslot =='11:00-1:30') {
 
-        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day=$day and year=$year and semester=$sem and timeslot_id in(4,5,6) order by timeslot_id";
+        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day='$day' and year='$year' and semester='$sem' and timeslot_id in(4,5,6) order by timeslot_id";
         $tbq = pg_query($db,$is_timeslot_blocked_query);
         if(!$tbq){
             echo pg_last_error($db);
@@ -91,7 +91,7 @@ if($stype == 'PRACTICAL') {
         $ret = pg_query($db, $sql);*/
     }
     else if($timeslot =='2:40-5:00') {
-        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day=$day and year=$year and semester=$sem and timeslot_id in(7,8,9) order by timeslot_id";
+        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day='$day' and year='$year' and semester='$sem' and timeslot_id in(7,8,9) order by timeslot_id";
         $tbq = pg_query($db,$is_timeslot_blocked_query);
         if(!$tbq){
             echo pg_last_error($db);
