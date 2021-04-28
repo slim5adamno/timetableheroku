@@ -15,7 +15,7 @@ if (isset($_POST['SN']) && isset($_POST['TS'])) {
 	$timeslot=$_POST['TS'];
 	$day= $_SESSION['day'];
 	$dept=$_SESSION['dept'];
-	$did=$_SESSION['dept_id'];
+	$did=intval($_SESSION['dept_id']);
 	$sem=$_SESSION['sem'];
 	$cname=$_SESSION['cname'];
 	$stype=$_SESSION['stype'];
@@ -37,7 +37,7 @@ echo "Teacher id is ".$tid[0];
 //TODO : TIMESLOT id=0 or Timeslot id=1 does not give the required blockage. Please check this bug in next Update
 if($stype == 'PRACTICAL') {
     if($timeslot =='7:30-11:00') {
-        $is_timeslot_blocked_query="select timeslot_id from allot where timeslot_id=0 or timeslot_id=1 or timeslot_id=2 or timeslot_id=3";
+        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day=$day and year=$year and semester=$sem and timeslot_id in(1,2,3) order by timeslot_id";
         $tbq = pg_query($db,$is_timeslot_blocked_query);
         if(!$tbq){
             echo pg_last_error($db);
@@ -45,16 +45,16 @@ if($stype == 'PRACTICAL') {
         }
         else if(pg_num_rows($tbq) == 0) {
             $timeslot_id = 0;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'7:30-8:20','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'7:30-8:20','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'8:20-9:10','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'8:20-9:10','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'9:10-10:00','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'9:10-10:00','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'10:10-11:00','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'10:10-11:00','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
         }
         else {
@@ -62,7 +62,7 @@ if($stype == 'PRACTICAL') {
         }
     } else if($timeslot =='11:00-1:30') {
 
-        $is_timeslot_blocked_query="select timeslot_id from allot where timeslot_id=4 or timeslot_id=5 or timeslot_id=6";
+        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day=$day and year=$year and semester=$sem and timeslot_id in(4,5,6) order by timeslot_id";
         $tbq = pg_query($db,$is_timeslot_blocked_query);
         if(!$tbq){
             echo pg_last_error($db);
@@ -70,13 +70,13 @@ if($stype == 'PRACTICAL') {
         }
         else if(pg_num_rows($tbq) == 0) {
             $timeslot_id = 4;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'11:00-11:50','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'11:00-11:50','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'11:50-12:40','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'11:50-12:40','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'12:40-1:30','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'12:40-1:30','$day',$timeslot_id,'$year')";
             $ret = pg_query($db, $sql);
         }
         else {
@@ -91,7 +91,7 @@ if($stype == 'PRACTICAL') {
         $ret = pg_query($db, $sql);*/
     }
     else if($timeslot =='2:40-5:00') {
-        $is_timeslot_blocked_query="select timeslot_id from allot where timeslot_id=7 or timeslot_id=8 or timeslot_id=9";
+        $is_timeslot_blocked_query="select timeslot_id from allot where did=$did and day=$day and year=$year and semester=$sem and timeslot_id in(7,8,9) order by timeslot_id";
         $tbq = pg_query($db,$is_timeslot_blocked_query);
         if(!$tbq){
             echo pg_last_error($db);
@@ -99,13 +99,13 @@ if($stype == 'PRACTICAL') {
         }
         else if(pg_num_rows($tbq) == 0) {
         $timeslot_id=7;
-        $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'2:40-3:30','$day',$timeslot_id,'$year')";
+        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'2:40-3:30','$day',$timeslot_id,'$year')";
         $ret = pg_query($db, $sql);
         $timeslot_id++;
-        $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'3:30-4:20','$day',$timeslot_id,'$year')";
+        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'3:30-4:20','$day',$timeslot_id,'$year')";
         $ret = pg_query($db, $sql);
         $timeslot_id++;
-        $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'4:20-5:10','$day',$timeslot_id,'$year')";
+        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'4:20-5:10','$day',$timeslot_id,'$year')";
         $ret = pg_query($db, $sql);
         /*$sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],$cid[0],'10:10-11:00','$day')";
         $ret = pg_query($db, $sql);*/
