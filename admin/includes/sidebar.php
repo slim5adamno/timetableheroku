@@ -90,6 +90,21 @@
                         <span> Allot Timetable </span>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="la la-book"></i>
+                        <span> Subjects </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li>
+                            <a href="assign-course.php">Allot Timetable</a>
+                        </li>
+                        <li>
+                            <a href="view-allot.php">View Allotment</a>
+                        </li>
+                    </ul>
+                </li>
               
                 
                  <li>
