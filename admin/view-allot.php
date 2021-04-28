@@ -61,7 +61,7 @@ include "includes/sidebar.php";
                                 while ($row = pg_fetch_row($ret)) {
 
                                     $sql="select name from department where did=$row[0]";
-                                    $sql1="select sname from subjects where did=$row[2]";
+                                    $sql1="select sname from subjects where sid=$row[2]";
 
                                     $return = pg_query($db, $sql);
                                     $return1 = pg_query($db, $sql1);
