@@ -84,16 +84,11 @@
                         <span> Add Classroom </span>
                     </a>
                 </li>
-                 <li>
-                    <a href="assign-course.php">
-                        <i class="la la-book"></i>
-                        <span> Allot Timetable </span>
-                    </a>
-                </li>
+
                 <li>
                     <a href="javascript: void(0);">
                         <i class="la la-book"></i>
-                        <span> Subjects </span>
+                        <span> Allot Timetable </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
