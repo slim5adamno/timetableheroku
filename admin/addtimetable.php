@@ -45,16 +45,16 @@ if($stype == 'PRACTICAL') {
         }
         else if(pg_num_rows($tbq) == 0) {
             $timeslot_id = 0;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'7:30-8:20','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'7:30-8:20','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'8:20-9:10','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'8:20-9:10','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'9:10-10:00','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'9:10-10:00','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'10:10-11:00','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'10:10-11:00','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
         }
         else {
@@ -70,13 +70,13 @@ if($stype == 'PRACTICAL') {
         }
         else if(pg_num_rows($tbq) == 0) {
             $timeslot_id = 4;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'11:00-11:50','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'11:00-11:50','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'11:50-12:40','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'11:50-12:40','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
             $timeslot_id++;
-            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'12:40-1:30','$day',$timeslot_id,'$year')";
+            $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'12:40-1:30','$day',$timeslot_id,'$year',$class)";
             $ret = pg_query($db, $sql);
         }
         else {
@@ -99,13 +99,13 @@ if($stype == 'PRACTICAL') {
         }
         else if(pg_num_rows($tbq) == 0) {
         $timeslot_id=7;
-        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'2:40-3:30','$day',$timeslot_id,'$year')";
+        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'2:40-3:30','$day',$timeslot_id,'$year',$class)";
         $ret = pg_query($db, $sql);
         $timeslot_id++;
-        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'3:30-4:20','$day',$timeslot_id,'$year')";
+        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'3:30-4:20','$day',$timeslot_id,'$year',$class)";
         $ret = pg_query($db, $sql);
         $timeslot_id++;
-        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'4:20-5:10','$day',$timeslot_id,'$year')";
+        $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'4:20-5:10','$day',$timeslot_id,'$year',$class)";
         $ret = pg_query($db, $sql);
         /*$sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],$cid[0],'10:10-11:00','$day')";
         $ret = pg_query($db, $sql);*/
