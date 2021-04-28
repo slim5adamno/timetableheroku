@@ -42,6 +42,7 @@ include "includes/sidebar.php";
                                     <th scope="col">Subject name</th>
                                     <th scope="col">Year</th>
                                     <th scope="col">Semester</th>
+                                    <th scope="col">Day</th>
                                     <th scope="col">Timeslot</th>
                                     <th scope="col">Classroom No.</th>
                                     <th scope="col">Action</th>
@@ -78,6 +79,7 @@ include "includes/sidebar.php";
                         <td style=\"text-align:center\">{$sid[0]}</td>
                         <td style=\"text-align:center\">{$row[7]}</td>
                         <td style=\"text-align:center\">{$row[1]}</td>
+                        <td style=\"text-align:center\">{$row[5]}</td>
                         <td style=\"text-align:center\">{$row[4]}</td>
                         <td style=\"text-align:center\">{$row[8]}</td>"; ?>
                                     <td><a href="delete_ttable.php?d_id=<?php echo $row[0]?>&sem=<?php echo $row[1]?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[5]?>&timeslot_id=<?php echo $row[6]?>&year=<?php echo $row[7]?>&cno=<?php echo $row[8]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
