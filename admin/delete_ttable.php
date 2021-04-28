@@ -24,7 +24,7 @@ if(!$ret) {
 } else {
     
        
-        header("Location:gen-time-table.php");
+        header("Location:view-allot.php");
     
 }
 
