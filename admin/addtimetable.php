@@ -5,11 +5,17 @@ if(session_status() == PHP_SESSION_NONE)
 
 include 'connection.php';
 if (isset($_POST['SN']) && isset($_POST['TS'])) {
-    $sname = $_POST['SN'];
+    $arr=explode('*',$_POST['SN']);
+    $sid = intval($arr[0]);
+    $sname = $arr[1];
+    $_SESSION['sid'] = $arr[0];
+    $_SESSION['cr'] = $_POST['CR'];
+    $_SESSION['TS']=$_POST['TS'];
 	$class= $_POST['CR'];
 	$timeslot=$_POST['TS'];
 	$day= $_SESSION['day'];
 	$dept=$_SESSION['dept'];
+	$did=$_SESSION['dept_id'];
 	$sem=$_SESSION['sem'];
 	$cname=$_SESSION['cname'];
 	$stype=$_SESSION['stype'];
@@ -21,17 +27,12 @@ if (isset($_POST['SN']) && isset($_POST['TS'])) {
 
 }
 
-$sq= "select sid from subjects where sname='$sname' and stype='$stype'";
-$tq="select tid from teacher where tid in(select tid from subjects where sname='$sname')";
-$dq="select did from department where name='$dept'";
-$sr=pg_query($db,$sq);
-$tr=pg_query($db,$tq);
-$dr=pg_query($db,$dq);
-$sid = pg_fetch_row($sr);
-$tid = pg_fetch_row($tr);
-$did = pg_fetch_row($dr);
+$tq="select tid from teacher where tid in(select tid from subjects where sid=$sid)";
 
-echo "Subject id is ".$sid[0];
+$tr=pg_query($db,$tq);
+$tid = pg_fetch_row($tr);
+
+echo "Subject id is ".$sid;
 echo "Teacher id is ".$tid[0];
 //TODO : TIMESLOT id=0 or Timeslot id=1 does not give the required blockage. Please check this bug in next Update
 if($stype == 'PRACTICAL') {
@@ -128,7 +129,7 @@ else {
     else {
         $timeslot_id=$position;
     }
-    $sql = "insert into allot values ($did[0],'$sem',$sid[0],$tid[0],'$timeslot','$day',$timeslot_id,'$year',$class)";
+    $sql = "insert into allot values ($did,'$sem',$sid,$tid[0],'$timeslot','$day',$timeslot_id,'$year',$class)";
 
 
     $ret = pg_query($db, $sql);

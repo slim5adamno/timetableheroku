@@ -13,7 +13,7 @@ include "includes/sidebar.php";
     }
     else{
     
-    $_POST['STREAM']=$_SESSION['stream'];
+        $_POST['STREAM']=$_SESSION['stream'];
         $_POST['CTYPE']=$_SESSION['ctype'];
         $_POST['STYPE']=$_SESSION['stype'];
         $_POST['DAY'] = $_SESSION['day'];

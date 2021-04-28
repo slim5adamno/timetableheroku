@@ -100,16 +100,16 @@ else{
                                                        // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
                                                        // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
                                                         $dept_id = intval($_SESSION['dept_id']);
-                                                        $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=$dept_id";
+                                                        $sql="select * from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and year='$_SESSION[year]' and did=$dept_id";
                                                         $ret=pg_query($db,$sql);
                                                         pg_last_error($db);
                                                         if(!$ret) {
                                                             echo pg_last_error($db);
                                                             exit;
                                                         }
-                                                        $string = '<option selected disabled>Select</option>';
+                                                        $string = "<option selected disabled>Select</option>";
                                                         while($row = pg_fetch_row($ret)) {
-                                                            $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                            $string .="<option value=\"$row[0]*$row[1]\">$row[1]</option>";
                                                         }
                                                         echo $string;
                                                         pg_close($db);
@@ -200,9 +200,9 @@ else{
                                                                 echo pg_last_error($db);
                                                                 exit;
                                                             }
-                                                            $string = '<option selected disabled>Select</option>';
+                                                            $string = "<option selected disabled>Select</option>";
                                                             while ($row = pg_fetch_row($ret)) {
-                                                                $string .= '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+                                                                $string .= "<option value=\"$row[0]\">$row[0]</option>";
                                                             }
                                                             echo $string;
                                                             pg_close($db);
@@ -225,16 +225,17 @@ else{
                                                         // $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
                                                         // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
                                                         // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
-                                                        $sql="select * from classroom_allot where did in(select did from department where name='$_SESSION[dept]' and stream='$_SESSION[stream]')";
+                                                        $dept_id = intval($_SESSION['dept_id']);
+                                                        $sql="select * from classroom_allot where did=$dept_id";
                                                         $ret=pg_query($db,$sql);
                                                         pg_last_error($db);
                                                         if(!$ret) {
                                                             echo pg_last_error($db);
                                                             exit;
                                                         }
-                                                        $string = '<option selected disabled>Select</option>';
+                                                        $string = "<option selected disabled>Select</option>";
                                                         while($row = pg_fetch_row($ret)) {
-                                                            $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                            $string .="<option value=\"$row[0]\">$row[0]</option>";
                                                         }
                                                         echo $string;
                                                         pg_close($db);
@@ -294,9 +295,8 @@ else{
                                 $dp="'$_SESSION[dept]'";
                                 $se="'$_SESSION[sem]'";
                                 $ye="'$_SESSION[year]'";
-
-
-                                $sql = "Select * from allot where did in(select did from department where name=$dp) and year=$ye and semester=$se order by day";
+                                $dept_id = intval($_SESSION['dept_id']);
+                                $sql = "Select * from allot where did=$dept_id and year=$ye and semester=$se order by day";
 
                                 $ret = pg_query($db, $sql);
                                 if (!$ret) {
