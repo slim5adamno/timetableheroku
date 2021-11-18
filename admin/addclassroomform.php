@@ -45,7 +45,7 @@ if($num_row == 0) {
 else {
     $num_rows = 0;
 
-    $sql3 = "select * from classroom_allot where cno=$cno";
+    $sql3 = "select * from classroom_allot where cno=$cno and semester = '$sem'";
     $ret3 = pg_query($db,$sql3);
     if(!$ret3){
         echo pg_last_error($db);

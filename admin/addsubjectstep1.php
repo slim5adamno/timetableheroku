@@ -245,7 +245,7 @@ else{
                                 </tr>
                                 </thead>
                                 <tbody>
-                                // TODO: ERROR syntax error at end of input LINE 1: select name from teacher where tid= ^ ERROR: syntax error at end of input LINE 1: select name from teacher where tid= ^ ERROR: syntax error at end of input LINE 1: select name from teacher where tid= ^
+                                //TODO : ERROR syntax error at end of input LINE 1 select name from teacher where tid= ^
                                 <?php
                                 include 'connection.php';
 
