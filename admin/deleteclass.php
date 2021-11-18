@@ -1,16 +1,17 @@
 <?php
 include 'connection.php';
 
-if($_GET['d_id'] && $_GET['time'])
+if($_GET['d_id'] && $_GET['time'] && $_GET['sem'])
 {
     $id=$_GET['d_id'];
     $time=$_GET['time'];
+    $sem = $_GET['sem'];
 }
 else{
     die();
 }
 
-$sql="delete from classroom_allot where cno=$id and time='$time'";
+$sql="delete from classroom_allot where cno=$id and time='$time' and semester='$sem'";
 $sql1="select * from classroom_allot where cno=$id";
 
 $ret = pg_query($db, $sql);

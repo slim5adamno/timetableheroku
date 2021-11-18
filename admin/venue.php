@@ -162,7 +162,7 @@ include "includes/sidebar.php";
 
                     "?>
                    
-                    <td><a href="deleteclass.php?d_id=<?php echo $row[0]?>&time=<?php echo $row[4]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                    <td><a href="deleteclass.php?d_id=<?php echo $row[0]?>&time=<?php echo $row[4]?>&sem=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
                <?php }
    
