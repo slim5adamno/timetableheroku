@@ -41,7 +41,7 @@ include "includes/sidebar.php";
                                     <th scope="col">Name</th>
                                     <th scope="col">Designation</th>
                                     <th scope="col">Department</th>
-                                    <th scope="col">Department</th>
+                                    <th scope="col">stream</th>
                                     <th scope="col">Contact No.</th>
                                     <th scope="col">Email ID</th>
                                     <th scope="col">Action</th>
