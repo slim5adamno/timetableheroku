@@ -226,7 +226,7 @@ else{
                                                         // $sql="select sname from subjects inner join course on subjects.cno=course.cno inner join department on course.did=department.did and course.ctype='$_SESSION[ctype]' and subjects.semester='$_SESSION[sem]'and department.name='$_SESSION[dept]' and subjects.stype='$_SESSION[stype]'";
                                                         // $sql="select sname from subjects where semester='$_SESSION[sem]' and stype='$_SESSION[stype]' and cno in(select cno from course where ctype='$_SESSION[ctype]' and did=(select did from department where name='$_SESSION[dept]'))";
                                                         $dept_id = intval($_SESSION['dept_id']);
-                                                        $sql="select * from classroom_allot where did=$dept_id";
+                                                        $sql="select * from classroom_allot where did=$dept_id and semester = '$_SESSION[sem]'";
                                                         $ret=pg_query($db,$sql);
                                                         pg_last_error($db);
                                                         if(!$ret) {
