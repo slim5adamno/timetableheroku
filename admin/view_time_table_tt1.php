@@ -252,7 +252,7 @@ include "includes/sidebar.php";
                                             echo "</tr>";
                                         }
                                     }
-                                    if(isset($_POST['TS']) && isset($_POST['DAY'])) {?>
+                                    if((isset($_POST['TS']) && isset($_POST['DAY'])) || isset($_POST['TS']) && isset($_POST['DAY']) && isset($_POST['select_semester']) ) {?>
 
                                         <table id="basic-datatable" class="table dt-responsive nowrap">
                                             <thead>
@@ -278,8 +278,14 @@ include "includes/sidebar.php";
                                             $se=$_POST['DAY'];
 
 
-                                            $sql = "Select * from allot where timeslot='$dp' and day='$se'";
+                                            if(isset($_POST['select_semester'])) {
+                                                $semest = $_POST['select_semester'];
+                                                $sql = "Select * from allot where timeslot='$dp' and day='$se' and semester='$semest'";
+                                            }
+                                            else {
+                                                $sql = "Select * from allot where timeslot='$dp' and day='$se'";
 
+                                            }
                                             $ret = pg_query($db, $sql);
                                             if (!$ret) {
                                                 echo pg_last_error($db);
