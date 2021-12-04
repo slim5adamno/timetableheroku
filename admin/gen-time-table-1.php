@@ -317,7 +317,7 @@ else{
                         <td>{$sid[0]}</td>
                         <td>{$tid[0]}</td>
                         <td>{$row[6]}</td>" ?>
-                                    <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[5]?>&tslot=<?php echo $row[4]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td
+                                    <!--<td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[5]?>&tslot=<?php echo $row[4]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>-->
                                     </tr>
                                     <?php
                                 }
