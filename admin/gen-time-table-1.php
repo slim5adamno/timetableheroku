@@ -284,7 +284,7 @@ else{
                                     <th scope="col">Subject</th>
                                     <th scope="col">Teacher</th>
                                     <th scope="col">Timeslot id</th>
-                                    <th scope="col">Action</th>
+                                    <!--<th scope="col">Action</th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
