@@ -252,7 +252,7 @@ include "includes/sidebar.php";
                                             echo "</tr>";
                                         }
                                     }
-                                    if((isset($_POST['TS']) && isset($_POST['DAY'])) || isset($_POST['TS']) && isset($_POST['DAY']) && isset($_POST['select_semester']) ) {?>
+                                    if((isset($_POST['TS']) && isset($_POST['DAY'])) || (isset($_POST['TS']) && isset($_POST['DAY']) && isset($_POST['select_semester'])) ) {?>
 
                                         <table id="basic-datatable" class="table dt-responsive nowrap">
                                             <thead>
