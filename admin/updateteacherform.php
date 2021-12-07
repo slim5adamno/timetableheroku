@@ -15,7 +15,7 @@ if (isset($_POST['TF']) && isset($_POST['TN']) && isset($_POST['TD'])  && isset(
 
 
 
-$sql="update teacher set name='$name',designation='$designation',email='$email',contact='$contact'";
+$sql="update teacher set name='$name',designation='$designation',email='$email',contact='$contact' where tid=$facno";
 
 
 $ret = pg_query($db, $sql);
