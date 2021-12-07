@@ -45,6 +45,8 @@ include "includes/sidebar.php";
                                     <th scope="col">Contact No.</th>
                                     <th scope="col">Email ID</th>
                                     <th scope="col">Action</th>
+                                    <th scope="col">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,9 +79,11 @@ include "includes/sidebar.php";
                         <td style=\"text-align:center\">{$id[2]}</td>
                         <td style=\"text-align:center\">{$row[3]}</td>                    
                         <td style=\"text-align:center\">{$row[4]}</td>"; ?>
-                       <td><a href="deleteteacher.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                        <td><a href="updateteacher.php?t_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Update</a></td>
+                        <td><a href="deleteteacher.php?t_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
-                        <?php
+
+                            <?php
                         }
                         pg_close($db);
                         ?>

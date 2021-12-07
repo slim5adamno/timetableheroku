@@ -1,9 +1,9 @@
 <?php
 include 'connection.php';
 
-if($_GET['d_id'])
+if($_GET['t_id'])
 {
-    $id=$_GET['d_id'];
+    $id=$_GET['t_id'];
     
 }
 else{
