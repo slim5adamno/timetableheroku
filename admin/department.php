@@ -162,8 +162,8 @@ include "includes/sidebar.php";
                                                         <td>{$row[2]}</td><td>{$row[1]}</td><td>{$row[3]}</td>"; ?>
 
                                                        
-                                                        <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
                                                         <td><a href="updatedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-info"><i class="fa fa-pencil-alt"></i> Update</a></td>
+                                                        <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
                                                     <?php  } ?>
                                     

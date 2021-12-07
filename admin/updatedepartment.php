@@ -155,7 +155,7 @@ else{
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <button class="btn btn-block btn-info rounded-0" name="add_dept">Add Department</button>
+                                                    <button class="btn btn-block btn-info rounded-0" name="add_dept">Update Department</button>
                                                 </div>
                                             </div>
                                         </div>
