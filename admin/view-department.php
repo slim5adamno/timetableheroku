@@ -42,6 +42,7 @@ include "includes/sidebar.php";
                                     <th >Department Name</th>
                                     <th >Course Type</th>
                                     <th >Action</th>
+                                    <th> Update</th>
 
                                 </tr>
                                 </thead>
@@ -62,7 +63,7 @@ include "includes/sidebar.php";
                                                         <td style=\"text-align:center\">{$row[3]}</td>
                                                         "; ?>
 
-
+                                    <td style=\"text-align:center\"><a href="updatedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-info"><i class="fa fa-pencil-alt"></i> Update</a></td>
                                     <td style=\"text-align:center\"><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
                                 <?php  } ?>
