@@ -23,7 +23,7 @@ if(!$ret) {
 } else {
 
 
-    header("Location:updatedepartment.php");
+    header("Location:department.php");
 
 
 }
