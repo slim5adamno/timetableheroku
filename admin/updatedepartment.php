@@ -200,7 +200,7 @@ else{
 
 
                                     <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
-                                    <!--<td><a href="updatedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-info"><i class="fa fa-pencil"></i> Update</a></td>-->
+                                    <td><a href="updatedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-info"><i class="fa fa-pencil"></i> Update</a></td>
 
                                 <?php  } ?>
 
