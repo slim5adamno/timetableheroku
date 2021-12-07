@@ -150,6 +150,8 @@ include "includes/sidebar.php";
                                     <th scope="col">Contact No.</th>
                                     <th scope="col">Email ID</th>
                                     <th scope="col">Action</th>
+                                    <th scope="col">Action</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
