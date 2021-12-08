@@ -79,7 +79,7 @@ include "includes/sidebar.php";
                         <td style=\"text-align:center\">{$id[2]}</td>
                         <td style=\"text-align:center\">{$row[3]}</td>                    
                         <td style=\"text-align:center\">{$row[4]}</td>"; ?>
-                        <td><a href="updateteacher.php?t_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Update</a></td>
+                        <td><a href="updateteacher.php?t_id=<?php echo $row[0]?>" class="btn btn-info"><i class="fa fa-pencil-alt"></i> Update</a></td>
                         <td><a href="deleteteacher.php?t_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
 
